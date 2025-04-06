@@ -23,23 +23,43 @@
 
 // islegalage(usersage);
 
+// interface User {
+//     fname: string;
+//     lname: string;
+//     age: number;
+// }
+
+// const islegalage = (users: User[])=>{
+//     let ans = [];
+
+//     for(let i=0;i<users.length;i++) {
+//         if(users[i].age > 18) {
+//             ans.push(users[i]);
+//         }
+//     }
+
+//     console.log(ans);
+// }
+
+// console
+
 interface User {
-    fname: string;
-    lname: string;
+    name: string;
     age: number;
 }
 
-const islegalage = (users: User[])=>{
-    let ans = [];
-
-    for(let i=0;i<users.length;i++) {
-        if(users[i].age > 18) {
-            ans.push(users[i]);
-        }
-    }
-
-    console.log(ans);
+const sumOfage = (user1:User,user2:User):number=>{
+    return user1.age+user2.age
 }
 
-console
+const user1 = {
+    name: "adam",
+    age:22
+}
 
+const user2 = {
+    name: "rat",
+    age:23
+}
+
+console.log(sumOfage(user1,user2));
