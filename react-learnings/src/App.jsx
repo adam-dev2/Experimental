@@ -2,17 +2,25 @@ import React, { createContext, useCallback, useContext, useState } from 'react'
 
 const LightContext = createContext();
 
-const App = () => {
+const LightProvider = ({children}) => {
   const [action, setAction] = useState(false);
+  return (
+    <LightContext.Provider value={{
+      action:action,
+      setAction:setAction
+    }}>
+      {children}
+    </LightContext.Provider>
+  )
+}
+
+const App = () => {
 
   return (
     <>  
-      <LightContext.Provider value={{
-        action:action,
-        setAction:setAction
-      }}>
+      <LightProvider >
         <Light />
-      </LightContext.Provider>
+      </LightProvider>
     </>
   )
 }
@@ -29,14 +37,14 @@ const Light = ()=>{
 const Bulb = () => {
   const {action} = useContext(LightContext);
   return (
-    <h1>bulb {action?"on":"off"}</h1>
+    <h1 className='text-3xl'>Bulb {action?"on":"off"}</h1>
   )
 }
 
 const LightSwitch = ()=>{
   const {action,setAction} = useContext(LightContext)
   return (
-    <button className='cursor-pointer border-2 p-4' onClick={()=> setAction(!action) }>Toggle Bulb</button>
+    <button className='cursor-pointer border-2 p-4 rounded-2xl mt-4 hover:scale-100 z-5' onClick={()=> setAction(!action) }>Toggle Bulb</button>
   )
 }
 
